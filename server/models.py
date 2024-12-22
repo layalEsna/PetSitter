@@ -31,14 +31,14 @@ class PetSitter(db.Model, SerializerMixin):
     location = db.Column(db.String, nullable=False)
     price = db.Column(db.Integer, nullable=False)
 
-#     def avg_rating(self):
-#         from sqlalchemy import func
+    def avg_rating(self):
+        from sqlalchemy import func
 
-#         rating = db.session.query(func.avg(Appointment.rating)).filter(
+        rating = db.session.query(func.avg(Appointment.rating)).filter(
 
-#             Appointment.pet_sitter_id == self.id).filter(
-#                 Appointment.rating != None).scalar()
-#         return round(rating, 2) if rating else None
+            Appointment.pet_sitter_id == self.id).filter(
+                Appointment.rating != None).scalar()
+        return round(rating, 2) if rating else None
     
     pet_owners = db.relationship('PetOwner', secondary='appointments', back_populates='pet_sitters')
     appointments = db.relationship('Appointment', back_populates='pet_sitter', cascade='all, delete_orphan')
