@@ -50,17 +50,17 @@ class PetSitter(db.Model, SerializerMixin):
 
 
 
-# class Appointment(db.Model, SerializerMixin):
+class Appointment(db.Model, SerializerMixin):
 
-#     __tablename__ = 'appointments'
+    __tablename__ = 'appointments'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     date = db.Column(db.Date, nullable=False)
-#     duration = db.Column(db.Float, nullable=False)
-#     rating = db.Column(db.Integer, nullable=True, default=None)
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date, nullable=False)
+    duration = db.Column(db.Float, nullable=False)
+    rating = db.Column(db.Integer, nullable=True, default=None)
 
-#     pet_owner_id = db.Column(db.Integer, db.ForeignKey('pet_owners.id'), nullable=False)
-#     pet_sitter_id = db.Column(db.Integer, db.ForeignKey('pet_sitters.id'), nullable=False)
+    pet_owner_id = db.Column(db.Integer, db.ForeignKey('pet_owners.id'), nullable=False)
+    pet_sitter_id = db.Column(db.Integer, db.ForeignKey('pet_sitters.id'), nullable=False)
 
 #     pet_owner = db.relationship('PetOwner', back_populates='appointments')
 #     pet_sitter = db.relationship('PetSitter', back_populates='appointments')
