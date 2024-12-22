@@ -13,61 +13,67 @@ class PetOwner(db.Model, SerializerMixin):
     pet_name = db.Column(db.String, nullable=False)
     pet_type = db.Column(db.String, nullable=False)
 
-    pet_sitters = db.relationship('PetSitter', secondary='appointments', back_populates='pet_owners')
-    appointments = db.relationship('Appointment', back_populates='pet_owner', cascade='all, delete_orphan')
+    # pet_sitters = db.relationship('PetSitter', secondary='appointments', back_populates='pet_owners')
+    # appointments = db.relationship('Appointment', back_populates='pet_owner', cascade='all, delete_orphan')
 
-    serialize_only = ('id', 'owner_name', 'pet_name', 'pet_type')
+    # serialize_only = ('id', 'owner_name', 'pet_name', 'pet_type')
 
     
 
 
-class PetSitter(db.Model, SerializerMixin):
-    # from sqlalchemy import func
+# class PetSitter(db.Model, SerializerMixin):
+#     # from sqlalchemy import func
 
-    __tablename__ = 'pet_sitters'
+#     __tablename__ = 'pet_sitters'
 
-    id = db.Column(db.Integer, primary_key=True)
-    sitter_name = db.Column(db.String, nullable=False)
-    location = db.Column(db.String, nullable=False)
-    price = db.Column(db.Integer, nullable=False)
+#     id = db.Column(db.Integer, primary_key=True)
+#     sitter_name = db.Column(db.String, nullable=False)
+#     location = db.Column(db.String, nullable=False)
+#     price = db.Column(db.Integer, nullable=False)
 
-    def avg_rating(self):
-        from sqlalchemy import func
+#     def avg_rating(self):
+#         from sqlalchemy import func
 
-        rating = db.session.query(func.avg(Appointment.rating)).filter(
+#         rating = db.session.query(func.avg(Appointment.rating)).filter(
 
-            Appointment.pet_sitter_id == self.id).filter(
-                Appointment.rating != None).scalar()
-        return round(rating, 2) if rating else None
+#             Appointment.pet_sitter_id == self.id).filter(
+#                 Appointment.rating != None).scalar()
+#         return round(rating, 2) if rating else None
     
-    pet_owners = db.relationship('PetOwner', secondary='appointments', back_populates='pet_sitters')
-    appointments = db.relationship('Appointment', back_populates='pet_sitter', cascade='all, delete_orphan')
+#     pet_owners = db.relationship('PetOwner', secondary='appointments', back_populates='pet_sitters')
+#     appointments = db.relationship('Appointment', back_populates='pet_sitter', cascade='all, delete_orphan')
     
-    serialize_only = ('id', 'sitter_name', 'location', 'price')
+#     serialize_only = ('id', 'sitter_name', 'location', 'price')
 
 
         
 
 
 
-class Appointment(db.Model, SerializerMixin):
+# class Appointment(db.Model, SerializerMixin):
 
-    __tablename__ = 'appointments'
+#     __tablename__ = 'appointments'
 
-    id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, nullable=False)
-    duration = db.Column(db.Float, nullable=False)
-    rating = db.Column(db.Integer, nullable=True, default=None)
+#     id = db.Column(db.Integer, primary_key=True)
+#     date = db.Column(db.Date, nullable=False)
+#     duration = db.Column(db.Float, nullable=False)
+#     rating = db.Column(db.Integer, nullable=True, default=None)
 
-    pet_owner_id = db.Column(db.Integer, db.ForeignKey('pet_owners.id'), nullable=False)
-    pet_sitter_id = db.Column(db.Integer, db.ForeignKey('pet_sitters.id'), nullable=False)
+#     pet_owner_id = db.Column(db.Integer, db.ForeignKey('pet_owners.id'), nullable=False)
+#     pet_sitter_id = db.Column(db.Integer, db.ForeignKey('pet_sitters.id'), nullable=False)
 
-    pet_owner = db.relationship('PetOwner', back_populates='appointments')
-    pet_sitter = db.relationship('PetSitter', back_populates='appointments')
+#     pet_owner = db.relationship('PetOwner', back_populates='appointments')
+#     pet_sitter = db.relationship('PetSitter', back_populates='appointments')
 
-    status = db.Column(db.String, nullable=False)
+#     status = db.Column(db.String, nullable=False)
 
-    serialize_only = ('id', 'date', 'duration', 'rating', 'status', 'pet_owner_id', 'pet_sitter_id')
+#     serialize_only = ('id', 'date', 'duration', 'rating', 'status', 'pet_owner_id', 'pet_sitter_id')
+
+
+
+
+
+
 
 
 # class PetOwnerPetSitter(db.Model):
