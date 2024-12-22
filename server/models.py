@@ -13,10 +13,10 @@ class PetOwner(db.Model, SerializerMixin):
     pet_name = db.Column(db.String, nullable=False)
     pet_type = db.Column(db.String, nullable=False)
 
-    # pet_sitters = db.relationship('PetSitter', secondary='appointments', back_populates='pet_owners')
-    # appointments = db.relationship('Appointment', back_populates='pet_owner', cascade='all, delete_orphan')
+    pet_sitters = db.relationship('PetSitter', secondary='appointments', back_populates='pet_owners')
+    appointments = db.relationship('Appointment', back_populates='pet_owner', cascade='all, delete_orphan')
 
-    # serialize_only = ('id', 'owner_name', 'pet_name', 'pet_type')
+    serialize_only = ('id', 'owner_name', 'pet_name', 'pet_type')
 
     
 
