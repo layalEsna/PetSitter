@@ -40,10 +40,10 @@ class PetSitter(db.Model, SerializerMixin):
 #                 Appointment.rating != None).scalar()
 #         return round(rating, 2) if rating else None
     
-#     pet_owners = db.relationship('PetOwner', secondary='appointments', back_populates='pet_sitters')
-#     appointments = db.relationship('Appointment', back_populates='pet_sitter', cascade='all, delete_orphan')
+    pet_owners = db.relationship('PetOwner', secondary='appointments', back_populates='pet_sitters')
+    appointments = db.relationship('Appointment', back_populates='pet_sitter', cascade='all, delete_orphan')
     
-#     serialize_only = ('id', 'sitter_name', 'location', 'price')
+    serialize_only = ('id', 'sitter_name', 'location', 'price')
 
 
         
