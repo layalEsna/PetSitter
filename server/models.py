@@ -21,15 +21,15 @@ class PetOwner(db.Model, SerializerMixin):
     
 
 
-# class PetSitter(db.Model, SerializerMixin):
-#     # from sqlalchemy import func
+class PetSitter(db.Model, SerializerMixin):
+    # from sqlalchemy import func
 
-#     __tablename__ = 'pet_sitters'
+    __tablename__ = 'pet_sitters'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     sitter_name = db.Column(db.String, nullable=False)
-#     location = db.Column(db.String, nullable=False)
-#     price = db.Column(db.Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    sitter_name = db.Column(db.String, nullable=False)
+    location = db.Column(db.String, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
 
 #     def avg_rating(self):
 #         from sqlalchemy import func
