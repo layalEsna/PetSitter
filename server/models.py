@@ -65,11 +65,11 @@ class Appointment(db.Model, SerializerMixin):
     status = db.Column(db.String, nullable=False)
 
 
-#     pet_owner = db.relationship('PetOwner', back_populates='appointments')
-#     pet_sitter = db.relationship('PetSitter', back_populates='appointments')
+    pet_owner = db.relationship('PetOwner', back_populates='appointments')
+    pet_sitter = db.relationship('PetSitter', back_populates='appointments')
 
 
-#     serialize_only = ('id', 'date', 'duration', 'rating', 'status', 'pet_owner_id', 'pet_sitter_id')
+    serialize_only = ('id', 'date', 'duration', 'rating', 'status', 'pet_owner_id', 'pet_sitter_id')
 
 
 
